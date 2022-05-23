@@ -7,8 +7,7 @@ defmodule Reto1 do
   """
 
   @doc """
-  Get the values from the input file. Send to an output file specified by the user
-  CHANGE: auto-generate an html file
+  Get the values from the input file.
   """
   def get_captures(in_filename) do
     time1 = Time.utc_now()
