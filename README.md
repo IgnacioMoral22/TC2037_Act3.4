@@ -8,39 +8,33 @@ Además, se debe tener el programa cargado. Usamos el flag Reto1.exs para eso
 iex Reto1.exs
 ```
 
-Una vez dentro, el programa se corre con la siguiente función. Recuerden cambiar el 'input_file_here'
+Una vez dentro, el programa se corre con la siguiente función. Recuerden cambiar el "input_file_here"
 al archivo que quieran hacer input.
 
 ```
-Reto1.get_captures(input_file_here)
+Reto1.get_captures("input_file_here")
 ```
 ### Ejemplo
 ```
-Reto1.get_captures('Test_files/example_4.json')
+Reto1.get_captures("Test_files/example_4.json")
 ```
-Siempre será subido al archivo output.html
+Será subido a un archivo con el mismo nombre, en el mismo folder que el archivo original, pero con terminación .html en lugar de .json
 
 ## Reflexión
-Este programa todavía tiene muchas mejoras. En primera, corre en un lamentable O(n<sup>3</sup>), pues corre línea por línea,
-pasando por una función recursiva, y cada línea corre por un Regex, que funciona de manera lineal. Aunque en archivos relativamente
-pequeños no afecta mucho, en archivos más grandes podría empezar a tener problemas más obvios.
+Este programa todavía tiene mejoras. En primera, corre en O(n*m<sup>2</sup>), pues corre línea por línea,
+pasando por una función recursiva que afecta la longitud de cada línea, y cada línea corre por un Regex, que funciona de manera lineal. 
+Aunque en archivos relativamente pequeños con líneas de texto cortas no afecta mucho, en archivos más grandes podría empezar a tener problemas más obvios.
 
-Además, el programa no es perfecto. En el caso donde más de un valor se repita por línea, los valores tienen un orden de prioridad
-y, por ende, serán agregados de manera incorrecta. Aunque en la mayoría de los casos no afecta, pues no hay múltiples llaves o 
-puntuaciones por líneas, en los casos donde sí, va a fallar.
-![Photo showing the error previously mentioned. Example shown is example_2.json](Errors_In_Program.png "Errores en example_2.json").
+Un ejemplo: corriendo el archivo example_4.json de Test_files tarda 0.32 segundos, aunque tenga muchas líneas. 
+Sin embargo, out_file_000001.json de Test_HW, que tiene menos líneas pero son más largas, tarda 8.25 segundos.
 
+![Photo showing the time durations previously mentioned.](time_duration.png "Duración temporal de diferentes archivos").
 
-Si corro el programa usando example_4.json, se tarda aproximadamente 216 milisegundos. Para un archivo que corre en O(n<sup>3</sup>) no está
-tan mal. Sin embargo, esto es un archivo pequeño. Mientras más crezca el archivo, el tiempo se agrandará.
-![Picture showing two instances of example_4.json being run, with times averaging 216 miliseconds](test_file_time.png "example_4.json runtime").
+Una segunda mejora sería abrirlo a más lenguajes posibles. Hasta ahora sólo corre en JSONS, pero sería buena idea que, dependiendo de la terminación dada al archivo, 
+pueda hacer un parser diferente. 
 
-En futuras versiones, se tendrá que encontrar la manera de resolver el problema principal del orden de prioridades. No puede ser que un programa
-dedicado a resaltar la sintáxis de archivos JSON se comporte de esta manera. En el mundo real, si se implementara de esta manera terminaríamos en
-la calle por malas prácticas y programación pobre. Las empresas necesitan estar constantemente buscando solucionar sus problemas, y cada vez usan
-más las expresiones regulares. Por ejemplo, buscando ciertos archivos en un documento de facturas, asientos en boletos de cine, e incluso en los
-editores de texto, pues ellos también resaltan de manera correcta las diferentes funciones. Mucha gente basa sus críticas de programación en que el
-código sea legible. Si el resaltador de sintaxis de un Entorno Interactivo de Desarrollo no funcionara, la gente no lo utilizaría. 
-
-Además, otra cosa que la gente busca en algoritmos es que sean eficientes. Tener que usar una función recursiva casi por definición lo hace ineficiente,
-sin embargo hay que buscar la manera que sea lo más eficiente posible. 
+Inicialmente tenía problemas corriendo archivos, pues desacomodaba los valores y salían en desorden. Ahora, logra identificar en el orden correcto los valores, 
+y los coloca apropiadamente.
+Lograr que los archivos sean apropiadamente representativos de lo que están demostrando es muy importante. Si la expresión regular tiene algún problema, o están ordenadas 
+de manera incorrecta, podrían capturar cosas no deseadas. Imagínense si se debe programar una expresión regular para identificar diferentes secciones en un archivo de 
+impuestos para una empresa o para uso personal. No sería buena idea que las expresiones regulares agarren números extra o menos números de los que debería agarrar.
