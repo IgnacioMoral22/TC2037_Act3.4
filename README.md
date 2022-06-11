@@ -57,6 +57,7 @@ Reto1.get_files_in_folder("./Test_HW/")
 Reto1.get_files_in_folder_secuential("./Test_HW/")
 ```
 
+## Tiempo
 Si corremos el tiempo secuencial, descubrimos que tarda aproximadamente 36 segundos.
 ```
 :timer.tc(fn -> Reto1.get_files_in_folder_secuential("./Test_HW/") end) |> elem(0) |> Kernel./(1_000_000)
@@ -66,3 +67,10 @@ Sin embargo, si corremos en tiempo paralelo, dura muchísimo menos. Menos de un 
 ```
 :timer.tc(fn -> Reto1.get_files_in_folder("./Test_HW/") end) |> elem(0) |> Kernel./(1_000_000)
 ```
+
+## Reflexión
+Considerando el tiempo, esto tiene mucho sentido que sea rápido. Al programa no le preocupa cuál se hace primero, cuál después, o que haya un valor específico. 
+Si hubiera la necesidad de ir agregando todos los archivos a un archivo más grande, y tendrían que estar en orden, podría generar problemas más grandes.
+Sin embargo, debido a que son archivos semi independientes, se puede ser más rápido y desordenado.
+Contrastando con la forma lineal, cada archivo tiene que terminar antes de que empiece el siguiente, por lo que tarda 36 segundos más o menos con archivos grandes.
+Las iteraciones son las mismas, pero debido a que no tiene que esperar a que los otros archivos terminen, el programa es mucho más rápido de manera concurrente.
