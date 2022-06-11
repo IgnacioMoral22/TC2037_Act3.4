@@ -8,7 +8,8 @@ defmodule Reto1 do
 
 
   def get_files_in_folder(folder_file) do
-    Path.wildcard(folder_file)
+    wildcard = folder_file <> "*.json"
+    Path.wildcard(wildcard)
     |> Enum.map(&Task.start(fn -> get_captures(&1) end))
   end
   @doc """

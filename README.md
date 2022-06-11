@@ -38,3 +38,16 @@ y los coloca apropiadamente.
 Lograr que los archivos sean apropiadamente representativos de lo que están demostrando es muy importante. Si la expresión regular tiene algún problema, o están ordenadas 
 de manera incorrecta, podrían capturar cosas no deseadas. Imagínense si se debe programar una expresión regular para identificar diferentes secciones en un archivo de 
 impuestos para una empresa o para uso personal. No sería buena idea que las expresiones regulares agarren números extra o menos números de los que debería agarrar.
+
+
+* * *
+
+# Actividad 5.2
+
+Para poder correr la nueva versión paralela de esta actividad, es muy sencillo. 
+Sólo se tiene que especificar la dirección del folder que se está buscando, respectivo a donde se encuentra Reto1.exs
+Por ejemplo, si se quiere acceder a todos los archivos de Test_HW, se correría de la siguiente manera.
+
+```
+Reto1.get_files_in_folder("./Test_HW/")
+```
