@@ -6,6 +6,11 @@ defmodule Reto1 do
   Alfredo Jeong Hyun Park - A01658259
   """
 
+
+  def get_files_in_folder(folder_file) do
+    Path.wildcard(folder_file)
+    |> Enum.map(&Task.start(fn -> get_captures(&1) end))
+  end
   @doc """
   Get the values from the input file.
   """
