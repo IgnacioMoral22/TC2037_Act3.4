@@ -48,6 +48,21 @@ Para poder correr la nueva versión paralela de esta actividad, es muy sencillo.
 Sólo se tiene que especificar la dirección del folder que se está buscando, respectivo a donde se encuentra Reto1.exs
 Por ejemplo, si se quiere acceder a todos los archivos de Test_HW, se correría de la siguiente manera.
 
+## Paralela
 ```
 Reto1.get_files_in_folder("./Test_HW/")
+```
+## Secuencial
+```
+Reto1.get_files_in_folder_secuential("./Test_HW/")
+```
+
+Si corremos el tiempo secuencial, descubrimos que tarda aproximadamente 36 segundos.
+```
+:timer.tc(fn -> Reto1.get_files_in_folder_secuential("./Test_HW/") end) |> elem(0) |> Kernel./(1_000_000)
+```
+
+Sin embargo, si corremos en tiempo paralelo, dura muchísimo menos. Menos de un segundo, en correr, pero se tarda aproximadamente 8 segundos cada archivo en correr, pero la función termina en 0.00768 segundos.
+```
+:timer.tc(fn -> Reto1.get_files_in_folder("./Test_HW/") end) |> elem(0) |> Kernel./(1_000_000)
 ```

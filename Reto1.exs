@@ -12,6 +12,14 @@ defmodule Reto1 do
     Path.wildcard(wildcard)
     |> Enum.map(&Task.start(fn -> get_captures(&1) end))
   end
+
+  def get_files_in_folder_secuential(folder_file) do
+    wildcard = folder_file <> "*.json"
+    Path.wildcard(wildcard)
+    |> Enum.map(&get_captures/1)
+  end
+
+
   @doc """
   Get the values from the input file.
   """
